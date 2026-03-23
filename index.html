@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Learning Tools — New College Lanarkshire</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f5f4f0;
+      --surface:   #ffffff;
+      --border:    #e2e0da;
+      --text:      #1a1918;
+      --muted:     #6b6860;
+      --subtle:    #9b9890;
+
+      --accent-engine:  #d4621a;
+      --accent-python:  #2563c8;
+      --accent-colour:  #7c3aed;
+      --accent-fm:      #0e7a5a;
+      --accent-camera:  #1a1a2e;
+
+      --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-mono: 'Menlo', 'Consolas', monospace;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ─────────────────────────────── */
+    header {
+      padding: 64px 40px 56px;
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .tagline {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    /* ── Grid ───────────────────────────────── */
+    main {
+      flex: 1;
+      padding: 0 40px 80px;
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    /* ── Card ───────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+      transform: translateY(-2px);
+    }
+
+    .card__accent {
+      height: 5px;
+      width: 100%;
+    }
+
+    .card__preview {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card__body {
+      padding: 20px 22px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card__tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .card__title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+
+    .card__desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .card__meta {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--subtle);
+    }
+
+    .card__cta {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card__cta::after {
+      content: '→';
+      transition: transform 0.15s;
+    }
+
+    .card:hover .card__cta::after {
+      transform: translateX(3px);
+    }
+
+    /* ── Illustrations (CSS) ─────────────────── */
+
+    /* Four-Stroke Engine — piston & cylinder */
+    .preview--engine {
+      background: #fdf6ee;
+    }
+    .preview--engine svg { opacity: 0.85; }
+
+    /* Python Loops — code block pattern */
+    .preview--python {
+      background: #f0f4ff;
+      font-family: var(--font-mono);
+      flex-direction: column;
+      gap: 6px;
+      padding: 20px 24px;
+      align-items: flex-start;
+    }
+    .preview--python .code-line {
+      font-size: 0.72rem;
+      color: #3a3a3a;
+      white-space: nowrap;
+    }
+    .preview--python .kw { color: #2563c8; font-weight: 700; }
+    .preview--python .fn { color: #7c3aed; }
+    .preview--python .num { color: #d4621a; }
+    .preview--python .cm { color: #9b9890; }
+
+    /* Colour Theory — swatches */
+    .preview--colour {
+      background: #fff;
+      flex-direction: row;
+      gap: 0;
+      padding: 0;
+    }
+    .swatch {
+      flex: 1;
+      height: 100%;
+    }
+
+    /* FM Synthesis — waveform */
+    .preview--fm {
+      background: #eef7f3;
+    }
+    .preview--fm svg { opacity: 0.75; }
+
+    /* Camera Controls — aperture rings */
+    .preview--camera {
+      background: #0e0e1a;
+    }
+    .preview--camera svg { opacity: 0.9; }
+
+    /* ── Footer ─────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 28px 40px;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--subtle);
+    }
+
+    /* ── Responsive ─────────────────────────── */
+    @media (max-width: 600px) {
+      header { padding: 40px 20px 36px; }
+      main   { padding: 0 20px 60px; }
+      .grid  { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="eyebrow">New College Lanarkshire</p>
+    <h1>Interactive<br>Learning Tools</h1>
+    <p class="tagline">A collection of browser-based interactive resources built to make complex subjects tangible. Each module uses animated diagrams and live controls — no installs, no accounts.</p>
+  </header>
+
+  <main>
+    <div class="grid">
+
+      <!-- Four-Stroke Engine -->
+      <a class="card" href="https://four-stroke-engine-iota.vercel.app/" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-engine)"></div>
+        <div class="card__preview preview--engine">
+          <svg width="120" height="110" viewBox="0 0 120 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cylinder walls -->
+            <rect x="38" y="8" width="44" height="80" rx="3" fill="#e8e0d4" stroke="#c0b8a8" stroke-width="1.5"/>
+            <!-- Piston -->
+            <rect x="42" y="38" width="36" height="22" rx="2" fill="#b0a898" stroke="#908880" stroke-width="1.5"/>
+            <!-- Piston rod -->
+            <line x1="60" y1="60" x2="60" y2="82" stroke="#908880" stroke-width="3" stroke-linecap="round"/>
+            <!-- Crankshaft circle -->
+            <circle cx="60" cy="94" r="10" fill="none" stroke="#c0b8a8" stroke-width="2"/>
+            <circle cx="60" cy="88" r="3" fill="#b0a898"/>
+            <!-- TDC/BDC labels -->
+            <text x="86" y="14" font-family="system-ui" font-size="8" fill="#d4621a" font-weight="700">TDC</text>
+            <text x="86" y="90" font-family="system-ui" font-size="8" fill="#9b9890">BDC</text>
+            <!-- Spark plug -->
+            <rect x="56" y="4" width="8" height="6" rx="1" fill="#888"/>
+          </svg>
+        </div>
+        <div class="card__body">
+          <span class="card__tag" style="color:var(--accent-engine)">Engineering · Technology</span>
+          <h2 class="card__title">Four-Stroke Engine</h2>
+          <p class="card__desc">Drag the piston, watch the crankshaft rotate, and step through all four strokes — intake, compression, combustion, exhaust — with annotations at every position.</p>
+          <div class="card__footer">
+            <span class="card__meta">10 pages · Draggable simulation</span>
+            <span class="card__cta">Open</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Python Loops -->
+      <a class="card" href="https://python-loops.vercel.app/" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-python)"></div>
+        <div class="card__preview preview--python">
+          <div class="code-line"><span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):</div>
+          <div class="code-line" style="padding-left:16px"><span class="fn">print</span>(<span class="num">i</span>)  <span class="cm"># 0 1 2 3 4</span></div>
+          <div class="code-line" style="margin-top:8px"><span class="kw">while</span> x &lt; <span class="num">10</span>:</div>
+          <div class="code-line" style="padding-left:16px">x += <span class="num">1</span></div>
+        </div>
+        <div class="card__body">
+          <span class="card__tag" style="color:var(--accent-python)">Computing · Programming</span>
+          <h2 class="card__title">Python Loops</h2>
+          <p class="card__desc">Step through while and for loops in real time, fix broken infinite loops, drag list items and re-run, then guide a robot through a maze with drag-and-drop code blocks.</p>
+          <div class="card__footer">
+            <span class="card__meta">10 pages · Step-through debugger</span>
+            <span class="card__cta">Open</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Colour Theory -->
+      <a class="card" href="https://colour-theory-chi.vercel.app/" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-colour)"></div>
+        <div class="card__preview preview--colour">
+          <div class="swatch" style="background:#e84060"></div>
+          <div class="swatch" style="background:#f0a030"></div>
+          <div class="swatch" style="background:#f5e840"></div>
+          <div class="swatch" style="background:#40c870"></div>
+          <div class="swatch" style="background:#4080e8"></div>
+          <div class="swatch" style="background:#8040d0"></div>
+        </div>
+        <div class="card__body">
+          <span class="card__tag" style="color:var(--accent-colour)">Design · Art</span>
+          <h2 class="card__title">Colour Theory</h2>
+          <p class="card__desc">Mix RGB spotlights, spin the colour wheel to explore harmony, test contrast ratios for accessibility, and build a complete design palette — all with live interactive controls.</p>
+          <div class="card__footer">
+            <span class="card__meta">10 pages · Live colour engine</span>
+            <span class="card__cta">Open</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- FM Synthesis -->
+      <a class="card" href="https://learning-fm-synthesis.vercel.app/" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-fm)"></div>
+        <div class="card__preview preview--fm">
+          <svg width="260" height="110" viewBox="0 0 260 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Carrier wave -->
+            <path d="M10 55 C 30 10, 50 10, 70 55 S 110 100, 130 55 S 170 10, 190 55 S 230 100, 250 55"
+              stroke="#0e7a5a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <!-- Modulator wave (faster, fainter) -->
+            <path d="M10 55 C 20 38, 30 38, 40 55 S 60 72, 70 55 S 90 38, 100 55 S 120 72, 130 55 S 150 38, 160 55 S 180 72, 190 55 S 210 38, 220 55 S 240 72, 250 55"
+              stroke="#0e7a5a" stroke-width="1" stroke-dasharray="3 3" fill="none" opacity="0.45"/>
+          </svg>
+        </div>
+        <div class="card__body">
+          <span class="card__tag" style="color:var(--accent-fm)">Music · Sound Production</span>
+          <h2 class="card__title">Learning FM Synthesis</h2>
+          <p class="card__desc">From a single sine wave to full operator patches — explore carrier and modulator relationships, ADSR envelopes, and build classic sounds like electric piano and bell tones.</p>
+          <div class="card__footer">
+            <span class="card__meta">12 pages · Live audio synthesis</span>
+            <span class="card__cta">Open</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Camera Controls -->
+      <a class="card" href="https://camera-controls-inky.vercel.app/index.html" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-camera)"></div>
+        <div class="card__preview preview--camera">
+          <svg width="140" height="110" viewBox="0 0 140 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Concentric aperture rings -->
+            <circle cx="70" cy="55" r="48" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none"/>
+            <circle cx="70" cy="55" r="38" stroke="rgba(255,255,255,0.10)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
+            <circle cx="70" cy="55" r="28" stroke="rgba(255,255,255,0.14)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
+            <circle cx="70" cy="55" r="19" stroke="rgba(255,255,255,0.20)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
+            <!-- Active aperture ring (amber) -->
+            <circle cx="70" cy="55" r="12" stroke="#d4a24e" stroke-width="2.5" fill="rgba(212,162,78,0.15)" fill-opacity="1"/>
+            <!-- f-number label -->
+            <text x="85" y="59" font-family="Menlo, monospace" font-size="9" fill="#d4a24e">f/5.6</text>
+          </svg>
+        </div>
+        <div class="card__body">
+          <span class="card__tag" style="color:#6b6860">Photography · Computing</span>
+          <h2 class="card__title">Camera Controls</h2>
+          <p class="card__desc">Manipulate aperture, shutter speed, and ISO with interactive widgets that show the effect in a live scene — motion blur, depth of field, and exposure, all visualised simultaneously.</p>
+          <div class="card__footer">
+            <span class="card__meta">13 pages · Live scene renderer</span>
+            <span class="card__cta">Open</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    New College Lanarkshire &mdash; Interactive Learning Tools &mdash; Built with HTML, CSS &amp; vanilla JavaScript
+  </footer>
+
+</body>
+</html>
