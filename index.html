@@ -20,6 +20,7 @@
       --accent-colour:  #7c3aed;
       --accent-fm:      #0e7a5a;
       --accent-camera:  #1a1a2e;
+      --accent-ai:      #e0436c;
 
       --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
       --font-mono: 'Menlo', 'Consolas', monospace;
@@ -228,6 +229,12 @@
     }
     .preview--camera svg { opacity: 0.9; }
 
+    /* Generative AI — neural network nodes */
+    .preview--ai {
+      background: #fdf0f3;
+    }
+    .preview--ai svg { opacity: 0.85; }
+
     /* ── Footer ─────────────────────────────── */
     footer {
       text-align: center;
@@ -376,6 +383,59 @@
           <p class="card__desc">Manipulate aperture, shutter speed, and ISO with interactive widgets that show the effect in a live scene — motion blur, depth of field, and exposure, all visualised simultaneously.</p>
           <div class="card__footer">
             <span class="card__meta">13 pages · Live scene renderer</span>
+            <span class="card__cta">Open</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Generative AI Primer -->
+      <a class="card" href="https://gen-ai-primer.vercel.app/" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-ai)"></div>
+        <div class="card__preview preview--ai">
+          <svg width="180" height="110" viewBox="0 0 180 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Input layer -->
+            <circle cx="30" cy="25" r="8" fill="#f8d0d8" stroke="#e0436c" stroke-width="1.5"/>
+            <circle cx="30" cy="55" r="8" fill="#f8d0d8" stroke="#e0436c" stroke-width="1.5"/>
+            <circle cx="30" cy="85" r="8" fill="#f8d0d8" stroke="#e0436c" stroke-width="1.5"/>
+            <!-- Hidden layer 1 -->
+            <circle cx="75" cy="20" r="7" fill="#f0b0c0" stroke="#e0436c" stroke-width="1.2"/>
+            <circle cx="75" cy="45" r="7" fill="#f0b0c0" stroke="#e0436c" stroke-width="1.2"/>
+            <circle cx="75" cy="70" r="7" fill="#f0b0c0" stroke="#e0436c" stroke-width="1.2"/>
+            <circle cx="75" cy="95" r="7" fill="#f0b0c0" stroke="#e0436c" stroke-width="1.2"/>
+            <!-- Hidden layer 2 -->
+            <circle cx="120" cy="30" r="7" fill="#e890a8" stroke="#e0436c" stroke-width="1.2"/>
+            <circle cx="120" cy="55" r="7" fill="#e890a8" stroke="#e0436c" stroke-width="1.2"/>
+            <circle cx="120" cy="80" r="7" fill="#e890a8" stroke="#e0436c" stroke-width="1.2"/>
+            <!-- Output layer -->
+            <circle cx="155" cy="42" r="8" fill="#e0436c" stroke="#c0304a" stroke-width="1.5"/>
+            <circle cx="155" cy="70" r="8" fill="#e0436c" stroke="#c0304a" stroke-width="1.5"/>
+            <!-- Connections input→hidden1 -->
+            <line x1="38" y1="25" x2="68" y2="20" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="38" y1="25" x2="68" y2="45" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="38" y1="55" x2="68" y2="45" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="38" y1="55" x2="68" y2="70" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="38" y1="85" x2="68" y2="70" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="38" y1="85" x2="68" y2="95" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <!-- Connections hidden1→hidden2 -->
+            <line x1="82" y1="20" x2="113" y2="30" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="82" y1="45" x2="113" y2="30" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="82" y1="45" x2="113" y2="55" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="82" y1="70" x2="113" y2="55" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="82" y1="70" x2="113" y2="80" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="82" y1="95" x2="113" y2="80" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <!-- Connections hidden2→output -->
+            <line x1="127" y1="30" x2="147" y2="42" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="127" y1="55" x2="147" y2="42" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="127" y1="55" x2="147" y2="70" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="127" y1="80" x2="147" y2="70" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="card__body">
+          <span class="card__tag" style="color:var(--accent-ai)">AI · Digital Literacy</span>
+          <h2 class="card__title">How Generative AI Actually Works</h2>
+          <p class="card__desc">From prediction to alignment — explore how AI learns, generates text, and the ethics behind it across four phases. No technical background needed, just curiosity.</p>
+          <div class="card__footer">
+            <span class="card__meta">18 pages · ~44 min guided journey</span>
             <span class="card__cta">Open</span>
           </div>
         </div>
