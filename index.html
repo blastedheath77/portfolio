@@ -21,6 +21,7 @@
       --accent-fm:      #0e7a5a;
       --accent-camera:  #1a1a2e;
       --accent-ai:      #e0436c;
+      --accent-lighting: #c47a0a;
 
       --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
       --font-mono: 'Menlo', 'Consolas', monospace;
@@ -235,6 +236,12 @@
     }
     .preview--ai svg { opacity: 0.85; }
 
+    /* Stage Lighting — spotlight beam */
+    .preview--lighting {
+      background: #080810;
+    }
+    .preview--lighting svg { opacity: 0.9; }
+
     /* ── Footer ─────────────────────────────── */
     footer {
       text-align: center;
@@ -263,58 +270,6 @@
   <main>
     <div class="grid">
 
-      <!-- Four-Stroke Engine -->
-      <a class="card" href="https://four-stroke-engine-iota.vercel.app/" target="_blank" rel="noopener">
-        <div class="card__accent" style="background:var(--accent-engine)"></div>
-        <div class="card__preview preview--engine">
-          <svg width="120" height="110" viewBox="0 0 120 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Cylinder walls -->
-            <rect x="38" y="8" width="44" height="80" rx="3" fill="#e8e0d4" stroke="#c0b8a8" stroke-width="1.5"/>
-            <!-- Piston -->
-            <rect x="42" y="38" width="36" height="22" rx="2" fill="#b0a898" stroke="#908880" stroke-width="1.5"/>
-            <!-- Piston rod -->
-            <line x1="60" y1="60" x2="60" y2="82" stroke="#908880" stroke-width="3" stroke-linecap="round"/>
-            <!-- Crankshaft circle -->
-            <circle cx="60" cy="94" r="10" fill="none" stroke="#c0b8a8" stroke-width="2"/>
-            <circle cx="60" cy="88" r="3" fill="#b0a898"/>
-            <!-- TDC/BDC labels -->
-            <text x="86" y="14" font-family="system-ui" font-size="8" fill="#d4621a" font-weight="700">TDC</text>
-            <text x="86" y="90" font-family="system-ui" font-size="8" fill="#9b9890">BDC</text>
-            <!-- Spark plug -->
-            <rect x="56" y="4" width="8" height="6" rx="1" fill="#888"/>
-          </svg>
-        </div>
-        <div class="card__body">
-          <span class="card__tag" style="color:var(--accent-engine)">Engineering · Technology</span>
-          <h2 class="card__title">Four-Stroke Engine</h2>
-          <p class="card__desc">Drag the piston, watch the crankshaft rotate, and step through all four strokes — intake, compression, combustion, exhaust — with annotations at every position.</p>
-          <div class="card__footer">
-            <span class="card__meta">10 pages · Draggable simulation</span>
-            <span class="card__cta">Open</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Python Loops -->
-      <a class="card" href="https://python-loops.vercel.app/" target="_blank" rel="noopener">
-        <div class="card__accent" style="background:var(--accent-python)"></div>
-        <div class="card__preview preview--python">
-          <div class="code-line"><span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):</div>
-          <div class="code-line" style="padding-left:16px"><span class="fn">print</span>(<span class="num">i</span>)  <span class="cm"># 0 1 2 3 4</span></div>
-          <div class="code-line" style="margin-top:8px"><span class="kw">while</span> x &lt; <span class="num">10</span>:</div>
-          <div class="code-line" style="padding-left:16px">x += <span class="num">1</span></div>
-        </div>
-        <div class="card__body">
-          <span class="card__tag" style="color:var(--accent-python)">Computing · Programming</span>
-          <h2 class="card__title">Python Loops</h2>
-          <p class="card__desc">Step through while and for loops in real time, fix broken infinite loops, drag list items and re-run, then guide a robot through a maze with drag-and-drop code blocks.</p>
-          <div class="card__footer">
-            <span class="card__meta">10 pages · Step-through debugger</span>
-            <span class="card__cta">Open</span>
-          </div>
-        </div>
-      </a>
-
       <!-- Colour Theory -->
       <a class="card" href="https://colour-theory-chi.vercel.app/" target="_blank" rel="noopener">
         <div class="card__accent" style="background:var(--accent-colour)"></div>
@@ -338,7 +293,7 @@
       </a>
 
       <!-- FM Synthesis -->
-      <a class="card" href="https://learning-fm-synthesis.vercel.app/" target="_blank" rel="noopener">
+      <a class="card" href="https://f-mlearning.vercel.app/" target="_blank" rel="noopener">
         <div class="card__accent" style="background:var(--accent-fm)"></div>
         <div class="card__preview preview--fm">
           <svg width="260" height="110" viewBox="0 0 260 110" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -356,33 +311,6 @@
           <p class="card__desc">From a single sine wave to full operator patches — explore carrier and modulator relationships, ADSR envelopes, and build classic sounds like electric piano and bell tones.</p>
           <div class="card__footer">
             <span class="card__meta">12 pages · Live audio synthesis</span>
-            <span class="card__cta">Open</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Camera Controls -->
-      <a class="card" href="https://camera-controls-inky.vercel.app/index.html" target="_blank" rel="noopener">
-        <div class="card__accent" style="background:var(--accent-camera)"></div>
-        <div class="card__preview preview--camera">
-          <svg width="140" height="110" viewBox="0 0 140 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Concentric aperture rings -->
-            <circle cx="70" cy="55" r="48" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none"/>
-            <circle cx="70" cy="55" r="38" stroke="rgba(255,255,255,0.10)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
-            <circle cx="70" cy="55" r="28" stroke="rgba(255,255,255,0.14)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
-            <circle cx="70" cy="55" r="19" stroke="rgba(255,255,255,0.20)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
-            <!-- Active aperture ring (amber) -->
-            <circle cx="70" cy="55" r="12" stroke="#d4a24e" stroke-width="2.5" fill="rgba(212,162,78,0.15)" fill-opacity="1"/>
-            <!-- f-number label -->
-            <text x="85" y="59" font-family="Menlo, monospace" font-size="9" fill="#d4a24e">f/5.6</text>
-          </svg>
-        </div>
-        <div class="card__body">
-          <span class="card__tag" style="color:#6b6860">Photography · Computing</span>
-          <h2 class="card__title">Camera Controls</h2>
-          <p class="card__desc">Manipulate aperture, shutter speed, and ISO with interactive widgets that show the effect in a live scene — motion blur, depth of field, and exposure, all visualised simultaneously.</p>
-          <div class="card__footer">
-            <span class="card__meta">13 pages · Live scene renderer</span>
             <span class="card__cta">Open</span>
           </div>
         </div>
@@ -436,6 +364,126 @@
           <p class="card__desc">From prediction to alignment — explore how AI learns, generates text, and the ethics behind it across four phases. No technical background needed, just curiosity.</p>
           <div class="card__footer">
             <span class="card__meta">18 pages · ~44 min guided journey</span>
+            <span class="card__cta">Open</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Four-Stroke Engine -->
+      <a class="card" href="https://four-stroke-engine-iota.vercel.app/" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-engine)"></div>
+        <div class="card__preview preview--engine">
+          <svg width="120" height="110" viewBox="0 0 120 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cylinder walls -->
+            <rect x="38" y="8" width="44" height="80" rx="3" fill="#e8e0d4" stroke="#c0b8a8" stroke-width="1.5"/>
+            <!-- Piston -->
+            <rect x="42" y="38" width="36" height="22" rx="2" fill="#b0a898" stroke="#908880" stroke-width="1.5"/>
+            <!-- Piston rod -->
+            <line x1="60" y1="60" x2="60" y2="82" stroke="#908880" stroke-width="3" stroke-linecap="round"/>
+            <!-- Crankshaft circle -->
+            <circle cx="60" cy="94" r="10" fill="none" stroke="#c0b8a8" stroke-width="2"/>
+            <circle cx="60" cy="88" r="3" fill="#b0a898"/>
+            <!-- TDC/BDC labels -->
+            <text x="86" y="14" font-family="system-ui" font-size="8" fill="#d4621a" font-weight="700">TDC</text>
+            <text x="86" y="90" font-family="system-ui" font-size="8" fill="#9b9890">BDC</text>
+            <!-- Spark plug -->
+            <rect x="56" y="4" width="8" height="6" rx="1" fill="#888"/>
+          </svg>
+        </div>
+        <div class="card__body">
+          <span class="card__tag" style="color:var(--accent-engine)">Engineering · Technology</span>
+          <h2 class="card__title">Four-Stroke Engine</h2>
+          <p class="card__desc">Drag the piston, watch the crankshaft rotate, and step through all four strokes — intake, compression, combustion, exhaust — with annotations at every position.</p>
+          <div class="card__footer">
+            <span class="card__meta">10 pages · Draggable simulation</span>
+            <span class="card__cta">Open</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Python Loops -->
+      <a class="card" href="https://python-loops.vercel.app/" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-python)"></div>
+        <div class="card__preview preview--python">
+          <div class="code-line"><span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):</div>
+          <div class="code-line" style="padding-left:16px"><span class="fn">print</span>(<span class="num">i</span>)  <span class="cm"># 0 1 2 3 4</span></div>
+          <div class="code-line" style="margin-top:8px"><span class="kw">while</span> x &lt; <span class="num">10</span>:</div>
+          <div class="code-line" style="padding-left:16px">x += <span class="num">1</span></div>
+        </div>
+        <div class="card__body">
+          <span class="card__tag" style="color:var(--accent-python)">Computing · Programming</span>
+          <h2 class="card__title">Python Loops</h2>
+          <p class="card__desc">Step through while and for loops in real time, fix broken infinite loops, drag list items and re-run, then guide a robot through a maze with drag-and-drop code blocks.</p>
+          <div class="card__footer">
+            <span class="card__meta">10 pages · Step-through debugger</span>
+            <span class="card__cta">Open</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Camera Controls -->
+      <a class="card" href="https://camera-controls-inky.vercel.app/index.html" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-camera)"></div>
+        <div class="card__preview preview--camera">
+          <svg width="140" height="110" viewBox="0 0 140 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Concentric aperture rings -->
+            <circle cx="70" cy="55" r="48" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none"/>
+            <circle cx="70" cy="55" r="38" stroke="rgba(255,255,255,0.10)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
+            <circle cx="70" cy="55" r="28" stroke="rgba(255,255,255,0.14)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
+            <circle cx="70" cy="55" r="19" stroke="rgba(255,255,255,0.20)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
+            <!-- Active aperture ring (amber) -->
+            <circle cx="70" cy="55" r="12" stroke="#d4a24e" stroke-width="2.5" fill="rgba(212,162,78,0.15)" fill-opacity="1"/>
+            <!-- f-number label -->
+            <text x="85" y="59" font-family="Menlo, monospace" font-size="9" fill="#d4a24e">f/5.6</text>
+          </svg>
+        </div>
+        <div class="card__body">
+          <span class="card__tag" style="color:#6b6860">Photography · Computing</span>
+          <h2 class="card__title">Camera Controls</h2>
+          <p class="card__desc">Manipulate aperture, shutter speed, and ISO with interactive widgets that show the effect in a live scene — motion blur, depth of field, and exposure, all visualised simultaneously.</p>
+          <div class="card__footer">
+            <span class="card__meta">13 pages · Live scene renderer</span>
+            <span class="card__cta">Open</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Stage & Screen Lighting -->
+      <a class="card" href="https://scene-stage-lighting.vercel.app/" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-lighting)"></div>
+        <div class="card__preview preview--lighting">
+          <svg width="260" height="110" viewBox="0 0 260 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="beam" x1="0.5" y1="0" x2="0.5" y2="1">
+                <stop offset="0%" stop-color="#f5c060" stop-opacity="0.75"/>
+                <stop offset="100%" stop-color="#f5c060" stop-opacity="0.04"/>
+              </linearGradient>
+              <linearGradient id="beam2" x1="0.5" y1="0" x2="0.5" y2="1">
+                <stop offset="0%" stop-color="#6090e0" stop-opacity="0.45"/>
+                <stop offset="100%" stop-color="#6090e0" stop-opacity="0.02"/>
+              </linearGradient>
+            </defs>
+            <!-- Fill light beam (cool blue, left) -->
+            <polygon points="70,0 30,110 110,110" fill="url(#beam2)"/>
+            <!-- Key light beam (warm amber, right) -->
+            <polygon points="190,0 155,110 225,110" fill="url(#beam)"/>
+            <!-- Fixture bodies -->
+            <rect x="62" y="0" width="16" height="5" rx="2" fill="#444"/>
+            <rect x="182" y="0" width="16" height="5" rx="2" fill="#555"/>
+            <!-- Ground pools -->
+            <ellipse cx="70" cy="108" rx="40" ry="4" fill="#6090e0" opacity="0.15"/>
+            <ellipse cx="190" cy="108" rx="36" ry="4" fill="#f5c060" opacity="0.2"/>
+            <!-- Subject — head -->
+            <circle cx="130" cy="72" r="13" fill="#c47a0a" opacity="0.28" stroke="#f5c060" stroke-width="1"/>
+            <circle cx="128" cy="68" r="5" fill="#f5d080" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="card__body">
+          <span class="card__tag" style="color:var(--accent-lighting)">Theatre · Film · Photography</span>
+          <h2 class="card__title">Stage &amp; Screen Lighting</h2>
+          <p class="card__desc">Rotate lights around an interactive 3D subject and see angle, quality, and colour reshape mood in real time — from a single key light to full multi-source compositions.</p>
+          <div class="card__footer">
+            <span class="card__meta">12 lessons · 3D interactive models</span>
             <span class="card__cta">Open</span>
           </div>
         </div>
