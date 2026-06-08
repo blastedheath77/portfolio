@@ -23,6 +23,7 @@
       --accent-ai:      #e0436c;
       --accent-lighting: #c47a0a;
       --accent-synth:   #a0255a;
+      --accent-beat:    #c49000;
 
       --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
       --font-mono: 'Menlo', 'Consolas', monospace;
@@ -249,6 +250,12 @@
     }
     .preview--synth svg { opacity: 0.9; }
 
+    /* Anatomy of a Beat — step sequencer */
+    .preview--beat {
+      background: #fef7e6;
+    }
+    .preview--beat svg { opacity: 0.95; }
+
     /* ── Footer ─────────────────────────────── */
     footer {
       text-align: center;
@@ -277,23 +284,35 @@
   <main>
     <div class="grid">
 
-      <!-- Colour Theory -->
-      <a class="card" href="https://colour-theory-chi.vercel.app/" target="_blank" rel="noopener">
-        <div class="card__accent" style="background:var(--accent-colour)"></div>
-        <div class="card__preview preview--colour">
-          <div class="swatch" style="background:#e84060"></div>
-          <div class="swatch" style="background:#f0a030"></div>
-          <div class="swatch" style="background:#f5e840"></div>
-          <div class="swatch" style="background:#40c870"></div>
-          <div class="swatch" style="background:#4080e8"></div>
-          <div class="swatch" style="background:#8040d0"></div>
+      <!-- Subtractive Synthesis -->
+      <a class="card" href="https://subtractive-synthesis.vercel.app/" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-synth)"></div>
+        <div class="card__preview preview--synth">
+          <svg width="260" height="110" viewBox="0 0 260 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Oscilloscope grid -->
+            <line x1="10" y1="55" x2="250" y2="55" stroke="#a0255a" stroke-width="0.4" opacity="0.25"/>
+            <line x1="130" y1="8" x2="130" y2="102" stroke="#a0255a" stroke-width="0.4" opacity="0.25"/>
+            <line x1="10" y1="8" x2="250" y2="8" stroke="#a0255a" stroke-width="0.3" opacity="0.12"/>
+            <line x1="10" y1="102" x2="250" y2="102" stroke="#a0255a" stroke-width="0.3" opacity="0.12"/>
+            <!-- Raw sawtooth (VCO out — harmonically rich) -->
+            <polyline points="10,55 30,18 30,55 60,18 60,55 90,18 90,55 120,18 120,55 150,18 150,55 180,18 180,55 210,18 210,55 240,18 240,55"
+              stroke="#c060a0" stroke-width="1" fill="none" opacity="0.4"/>
+            <!-- Filtered output (VCF out — smooth) -->
+            <path d="M10,55 C40,22 60,18 90,26 S140,40 170,44 S220,50 250,52"
+              stroke="#d070b8" stroke-width="2" fill="none" opacity="0.85" stroke-linecap="round"/>
+            <!-- Filter cutoff marker -->
+            <line x1="90" y1="10" x2="90" y2="100" stroke="#a0255a" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
+            <text x="93" y="20" font-family="Menlo, monospace" font-size="7" fill="#a0255a" opacity="0.8">VCF</text>
+            <!-- LFO modulation dot on filter line -->
+            <circle cx="90" cy="26" r="3" fill="#d070b8" opacity="0.9"/>
+          </svg>
         </div>
         <div class="card__body">
-          <span class="card__tag" style="color:var(--accent-colour)">Design · Art</span>
-          <h2 class="card__title">Colour Theory</h2>
-          <p class="card__desc">Mix RGB spotlights, spin the colour wheel to explore harmony, test contrast ratios for accessibility, and build a complete design palette — all with live interactive controls.</p>
+          <span class="card__tag" style="color:var(--accent-synth)">Music · Sound Production</span>
+          <h2 class="card__title">Subtractive Synthesis</h2>
+          <p class="card__desc">Route oscillators through filters, envelopes, and LFOs on a virtual analogue synth — watch harmonics disappear in real time on the oscilloscope and FFT display as you sculpt classic sounds.</p>
           <div class="card__footer">
-            <span class="card__meta">10 pages · Live colour engine</span>
+            <span class="card__meta">12 sections · Live synthesis engine</span>
             <span class="card__cta">Open</span>
           </div>
         </div>
@@ -323,54 +342,144 @@
         </div>
       </a>
 
-      <!-- Generative AI Primer -->
-      <a class="card" href="https://gen-ai-primer.vercel.app/" target="_blank" rel="noopener">
-        <div class="card__accent" style="background:var(--accent-ai)"></div>
-        <div class="card__preview preview--ai">
-          <svg width="180" height="110" viewBox="0 0 180 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Input layer -->
-            <circle cx="30" cy="25" r="8" fill="#f8d0d8" stroke="#e0436c" stroke-width="1.5"/>
-            <circle cx="30" cy="55" r="8" fill="#f8d0d8" stroke="#e0436c" stroke-width="1.5"/>
-            <circle cx="30" cy="85" r="8" fill="#f8d0d8" stroke="#e0436c" stroke-width="1.5"/>
-            <!-- Hidden layer 1 -->
-            <circle cx="75" cy="20" r="7" fill="#f0b0c0" stroke="#e0436c" stroke-width="1.2"/>
-            <circle cx="75" cy="45" r="7" fill="#f0b0c0" stroke="#e0436c" stroke-width="1.2"/>
-            <circle cx="75" cy="70" r="7" fill="#f0b0c0" stroke="#e0436c" stroke-width="1.2"/>
-            <circle cx="75" cy="95" r="7" fill="#f0b0c0" stroke="#e0436c" stroke-width="1.2"/>
-            <!-- Hidden layer 2 -->
-            <circle cx="120" cy="30" r="7" fill="#e890a8" stroke="#e0436c" stroke-width="1.2"/>
-            <circle cx="120" cy="55" r="7" fill="#e890a8" stroke="#e0436c" stroke-width="1.2"/>
-            <circle cx="120" cy="80" r="7" fill="#e890a8" stroke="#e0436c" stroke-width="1.2"/>
-            <!-- Output layer -->
-            <circle cx="155" cy="42" r="8" fill="#e0436c" stroke="#c0304a" stroke-width="1.5"/>
-            <circle cx="155" cy="70" r="8" fill="#e0436c" stroke="#c0304a" stroke-width="1.5"/>
-            <!-- Connections input→hidden1 -->
-            <line x1="38" y1="25" x2="68" y2="20" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <line x1="38" y1="25" x2="68" y2="45" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <line x1="38" y1="55" x2="68" y2="45" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <line x1="38" y1="55" x2="68" y2="70" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <line x1="38" y1="85" x2="68" y2="70" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <line x1="38" y1="85" x2="68" y2="95" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <!-- Connections hidden1→hidden2 -->
-            <line x1="82" y1="20" x2="113" y2="30" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <line x1="82" y1="45" x2="113" y2="30" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <line x1="82" y1="45" x2="113" y2="55" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <line x1="82" y1="70" x2="113" y2="55" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <line x1="82" y1="70" x2="113" y2="80" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <line x1="82" y1="95" x2="113" y2="80" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <!-- Connections hidden2→output -->
-            <line x1="127" y1="30" x2="147" y2="42" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <line x1="127" y1="55" x2="147" y2="42" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <line x1="127" y1="55" x2="147" y2="70" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
-            <line x1="127" y1="80" x2="147" y2="70" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+      <!-- Anatomy of a Beat -->
+      <a class="card" href="https://anatomy-of-a-beat.vercel.app/page-01.html" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-beat)"></div>
+        <div class="card__preview preview--beat">
+          <svg width="260" height="110" viewBox="0 0 260 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Step sequencer grid — 8 steps, 3 rows -->
+            <!-- Row labels -->
+            <text x="4" y="31" font-family="Menlo, monospace" font-size="7" fill="#c49000" font-weight="700">K</text>
+            <text x="4" y="59" font-family="Menlo, monospace" font-size="7" fill="#c49000" font-weight="700">S</text>
+            <text x="4" y="87" font-family="Menlo, monospace" font-size="7" fill="#c49000" font-weight="700">H</text>
+            <!-- Kick row (steps 1 and 5 lit) -->
+            <rect x="18" y="18" width="18" height="18" rx="2" fill="#c49000" opacity="0.9"/>
+            <rect x="40" y="18" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <rect x="62" y="18" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <rect x="84" y="18" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <rect x="106" y="18" width="18" height="18" rx="2" fill="#c49000" opacity="0.9"/>
+            <rect x="128" y="18" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <rect x="150" y="18" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <rect x="172" y="18" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <!-- Snare row (steps 3 and 7 lit) -->
+            <rect x="18" y="46" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <rect x="40" y="46" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <rect x="62" y="46" width="18" height="18" rx="2" fill="#c49000" opacity="0.72"/>
+            <rect x="84" y="46" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <rect x="106" y="46" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <rect x="128" y="46" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <rect x="150" y="46" width="18" height="18" rx="2" fill="#c49000" opacity="0.72"/>
+            <rect x="172" y="46" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <!-- Hi-hat row (even steps lit) -->
+            <rect x="18" y="74" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <rect x="40" y="74" width="18" height="18" rx="2" fill="#c49000" opacity="0.42"/>
+            <rect x="62" y="74" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <rect x="84" y="74" width="18" height="18" rx="2" fill="#c49000" opacity="0.42"/>
+            <rect x="106" y="74" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <rect x="128" y="74" width="18" height="18" rx="2" fill="#c49000" opacity="0.42"/>
+            <rect x="150" y="74" width="18" height="18" rx="2" fill="#c49000" opacity="0.12"/>
+            <rect x="172" y="74" width="18" height="18" rx="2" fill="#c49000" opacity="0.42"/>
+            <!-- BPM display -->
+            <text x="204" y="52" font-family="Menlo, monospace" font-size="16" fill="#c49000" opacity="0.85" font-weight="700">120</text>
+            <text x="208" y="64" font-family="Menlo, monospace" font-size="7" fill="#c49000" opacity="0.5">BPM</text>
           </svg>
         </div>
         <div class="card__body">
-          <span class="card__tag" style="color:var(--accent-ai)">AI · Digital Literacy</span>
-          <h2 class="card__title">How Generative AI Actually Works</h2>
-          <p class="card__desc">From prediction to alignment — explore how AI learns, generates text, and the ethics behind it across four phases. No technical background needed, just curiosity.</p>
+          <span class="card__tag" style="color:var(--accent-beat)">Music · Sound Production</span>
+          <h2 class="card__title">Anatomy of a Beat</h2>
+          <p class="card__desc">Tap along to find your BPM, slide the tempo to feel how speed shapes genre, and explore the pulse, subdivision, and groove concepts that every producer builds on.</p>
           <div class="card__footer">
-            <span class="card__meta">18 pages · ~44 min guided journey</span>
+            <span class="card__meta">12 pages · Tap tempo &amp; live playback</span>
+            <span class="card__cta">Open</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Colour Theory -->
+      <a class="card" href="https://colour-theory-chi.vercel.app/" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-colour)"></div>
+        <div class="card__preview preview--colour">
+          <div class="swatch" style="background:#e84060"></div>
+          <div class="swatch" style="background:#f0a030"></div>
+          <div class="swatch" style="background:#f5e840"></div>
+          <div class="swatch" style="background:#40c870"></div>
+          <div class="swatch" style="background:#4080e8"></div>
+          <div class="swatch" style="background:#8040d0"></div>
+        </div>
+        <div class="card__body">
+          <span class="card__tag" style="color:var(--accent-colour)">Design · Art</span>
+          <h2 class="card__title">Colour Theory</h2>
+          <p class="card__desc">Mix RGB spotlights, spin the colour wheel to explore harmony, test contrast ratios for accessibility, and build a complete design palette — all with live interactive controls.</p>
+          <div class="card__footer">
+            <span class="card__meta">10 pages · Live colour engine</span>
+            <span class="card__cta">Open</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Stage & Screen Lighting -->
+      <a class="card" href="https://scene-stage-lighting.vercel.app/" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-lighting)"></div>
+        <div class="card__preview preview--lighting">
+          <svg width="260" height="110" viewBox="0 0 260 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="beam" x1="0.5" y1="0" x2="0.5" y2="1">
+                <stop offset="0%" stop-color="#f5c060" stop-opacity="0.75"/>
+                <stop offset="100%" stop-color="#f5c060" stop-opacity="0.04"/>
+              </linearGradient>
+              <linearGradient id="beam2" x1="0.5" y1="0" x2="0.5" y2="1">
+                <stop offset="0%" stop-color="#6090e0" stop-opacity="0.45"/>
+                <stop offset="100%" stop-color="#6090e0" stop-opacity="0.02"/>
+              </linearGradient>
+            </defs>
+            <!-- Fill light beam (cool blue, left) -->
+            <polygon points="70,0 30,110 110,110" fill="url(#beam2)"/>
+            <!-- Key light beam (warm amber, right) -->
+            <polygon points="190,0 155,110 225,110" fill="url(#beam)"/>
+            <!-- Fixture bodies -->
+            <rect x="62" y="0" width="16" height="5" rx="2" fill="#444"/>
+            <rect x="182" y="0" width="16" height="5" rx="2" fill="#555"/>
+            <!-- Ground pools -->
+            <ellipse cx="70" cy="108" rx="40" ry="4" fill="#6090e0" opacity="0.15"/>
+            <ellipse cx="190" cy="108" rx="36" ry="4" fill="#f5c060" opacity="0.2"/>
+            <!-- Subject — head -->
+            <circle cx="130" cy="72" r="13" fill="#c47a0a" opacity="0.28" stroke="#f5c060" stroke-width="1"/>
+            <circle cx="128" cy="68" r="5" fill="#f5d080" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="card__body">
+          <span class="card__tag" style="color:var(--accent-lighting)">Theatre · Film · Photography</span>
+          <h2 class="card__title">Stage &amp; Screen Lighting</h2>
+          <p class="card__desc">Rotate lights around an interactive 3D subject and see angle, quality, and colour reshape mood in real time — from a single key light to full multi-source compositions.</p>
+          <div class="card__footer">
+            <span class="card__meta">12 lessons · 3D interactive models</span>
+            <span class="card__cta">Open</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Camera Controls -->
+      <a class="card" href="https://camera-controls-inky.vercel.app/index.html" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-camera)"></div>
+        <div class="card__preview preview--camera">
+          <svg width="140" height="110" viewBox="0 0 140 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Concentric aperture rings -->
+            <circle cx="70" cy="55" r="48" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none"/>
+            <circle cx="70" cy="55" r="38" stroke="rgba(255,255,255,0.10)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
+            <circle cx="70" cy="55" r="28" stroke="rgba(255,255,255,0.14)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
+            <circle cx="70" cy="55" r="19" stroke="rgba(255,255,255,0.20)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
+            <!-- Active aperture ring (amber) -->
+            <circle cx="70" cy="55" r="12" stroke="#d4a24e" stroke-width="2.5" fill="rgba(212,162,78,0.15)" fill-opacity="1"/>
+            <!-- f-number label -->
+            <text x="85" y="59" font-family="Menlo, monospace" font-size="9" fill="#d4a24e">f/5.6</text>
+          </svg>
+        </div>
+        <div class="card__body">
+          <span class="card__tag" style="color:#6b6860">Photography · Computing</span>
+          <h2 class="card__title">Camera Controls</h2>
+          <p class="card__desc">Manipulate aperture, shutter speed, and ISO with interactive widgets that show the effect in a live scene — motion blur, depth of field, and exposure, all visualised simultaneously.</p>
+          <div class="card__footer">
+            <span class="card__meta">13 pages · Live scene renderer</span>
             <span class="card__cta">Open</span>
           </div>
         </div>
@@ -428,103 +537,54 @@
         </div>
       </a>
 
-      <!-- Camera Controls -->
-      <a class="card" href="https://camera-controls-inky.vercel.app/index.html" target="_blank" rel="noopener">
-        <div class="card__accent" style="background:var(--accent-camera)"></div>
-        <div class="card__preview preview--camera">
-          <svg width="140" height="110" viewBox="0 0 140 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Concentric aperture rings -->
-            <circle cx="70" cy="55" r="48" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none"/>
-            <circle cx="70" cy="55" r="38" stroke="rgba(255,255,255,0.10)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
-            <circle cx="70" cy="55" r="28" stroke="rgba(255,255,255,0.14)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
-            <circle cx="70" cy="55" r="19" stroke="rgba(255,255,255,0.20)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
-            <!-- Active aperture ring (amber) -->
-            <circle cx="70" cy="55" r="12" stroke="#d4a24e" stroke-width="2.5" fill="rgba(212,162,78,0.15)" fill-opacity="1"/>
-            <!-- f-number label -->
-            <text x="85" y="59" font-family="Menlo, monospace" font-size="9" fill="#d4a24e">f/5.6</text>
+      <!-- Generative AI Primer -->
+      <a class="card" href="https://gen-ai-primer.vercel.app/" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-ai)"></div>
+        <div class="card__preview preview--ai">
+          <svg width="180" height="110" viewBox="0 0 180 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Input layer -->
+            <circle cx="30" cy="25" r="8" fill="#f8d0d8" stroke="#e0436c" stroke-width="1.5"/>
+            <circle cx="30" cy="55" r="8" fill="#f8d0d8" stroke="#e0436c" stroke-width="1.5"/>
+            <circle cx="30" cy="85" r="8" fill="#f8d0d8" stroke="#e0436c" stroke-width="1.5"/>
+            <!-- Hidden layer 1 -->
+            <circle cx="75" cy="20" r="7" fill="#f0b0c0" stroke="#e0436c" stroke-width="1.2"/>
+            <circle cx="75" cy="45" r="7" fill="#f0b0c0" stroke="#e0436c" stroke-width="1.2"/>
+            <circle cx="75" cy="70" r="7" fill="#f0b0c0" stroke="#e0436c" stroke-width="1.2"/>
+            <circle cx="75" cy="95" r="7" fill="#f0b0c0" stroke="#e0436c" stroke-width="1.2"/>
+            <!-- Hidden layer 2 -->
+            <circle cx="120" cy="30" r="7" fill="#e890a8" stroke="#e0436c" stroke-width="1.2"/>
+            <circle cx="120" cy="55" r="7" fill="#e890a8" stroke="#e0436c" stroke-width="1.2"/>
+            <circle cx="120" cy="80" r="7" fill="#e890a8" stroke="#e0436c" stroke-width="1.2"/>
+            <!-- Output layer -->
+            <circle cx="155" cy="42" r="8" fill="#e0436c" stroke="#c0304a" stroke-width="1.5"/>
+            <circle cx="155" cy="70" r="8" fill="#e0436c" stroke="#c0304a" stroke-width="1.5"/>
+            <!-- Connections input→hidden1 -->
+            <line x1="38" y1="25" x2="68" y2="20" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="38" y1="25" x2="68" y2="45" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="38" y1="55" x2="68" y2="45" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="38" y1="55" x2="68" y2="70" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="38" y1="85" x2="68" y2="70" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="38" y1="85" x2="68" y2="95" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <!-- Connections hidden1→hidden2 -->
+            <line x1="82" y1="20" x2="113" y2="30" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="82" y1="45" x2="113" y2="30" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="82" y1="45" x2="113" y2="55" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="82" y1="70" x2="113" y2="55" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="82" y1="70" x2="113" y2="80" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="82" y1="95" x2="113" y2="80" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <!-- Connections hidden2→output -->
+            <line x1="127" y1="30" x2="147" y2="42" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="127" y1="55" x2="147" y2="42" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="127" y1="55" x2="147" y2="70" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
+            <line x1="127" y1="80" x2="147" y2="70" stroke="#e0436c" stroke-width="0.6" opacity="0.3"/>
           </svg>
         </div>
         <div class="card__body">
-          <span class="card__tag" style="color:#6b6860">Photography · Computing</span>
-          <h2 class="card__title">Camera Controls</h2>
-          <p class="card__desc">Manipulate aperture, shutter speed, and ISO with interactive widgets that show the effect in a live scene — motion blur, depth of field, and exposure, all visualised simultaneously.</p>
+          <span class="card__tag" style="color:var(--accent-ai)">AI · Digital Literacy</span>
+          <h2 class="card__title">How Generative AI Actually Works</h2>
+          <p class="card__desc">From prediction to alignment — explore how AI learns, generates text, and the ethics behind it across four phases. No technical background needed, just curiosity.</p>
           <div class="card__footer">
-            <span class="card__meta">13 pages · Live scene renderer</span>
-            <span class="card__cta">Open</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Stage & Screen Lighting -->
-      <a class="card" href="https://scene-stage-lighting.vercel.app/" target="_blank" rel="noopener">
-        <div class="card__accent" style="background:var(--accent-lighting)"></div>
-        <div class="card__preview preview--lighting">
-          <svg width="260" height="110" viewBox="0 0 260 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="beam" x1="0.5" y1="0" x2="0.5" y2="1">
-                <stop offset="0%" stop-color="#f5c060" stop-opacity="0.75"/>
-                <stop offset="100%" stop-color="#f5c060" stop-opacity="0.04"/>
-              </linearGradient>
-              <linearGradient id="beam2" x1="0.5" y1="0" x2="0.5" y2="1">
-                <stop offset="0%" stop-color="#6090e0" stop-opacity="0.45"/>
-                <stop offset="100%" stop-color="#6090e0" stop-opacity="0.02"/>
-              </linearGradient>
-            </defs>
-            <!-- Fill light beam (cool blue, left) -->
-            <polygon points="70,0 30,110 110,110" fill="url(#beam2)"/>
-            <!-- Key light beam (warm amber, right) -->
-            <polygon points="190,0 155,110 225,110" fill="url(#beam)"/>
-            <!-- Fixture bodies -->
-            <rect x="62" y="0" width="16" height="5" rx="2" fill="#444"/>
-            <rect x="182" y="0" width="16" height="5" rx="2" fill="#555"/>
-            <!-- Ground pools -->
-            <ellipse cx="70" cy="108" rx="40" ry="4" fill="#6090e0" opacity="0.15"/>
-            <ellipse cx="190" cy="108" rx="36" ry="4" fill="#f5c060" opacity="0.2"/>
-            <!-- Subject — head -->
-            <circle cx="130" cy="72" r="13" fill="#c47a0a" opacity="0.28" stroke="#f5c060" stroke-width="1"/>
-            <circle cx="128" cy="68" r="5" fill="#f5d080" opacity="0.5"/>
-          </svg>
-        </div>
-        <div class="card__body">
-          <span class="card__tag" style="color:var(--accent-lighting)">Theatre · Film · Photography</span>
-          <h2 class="card__title">Stage &amp; Screen Lighting</h2>
-          <p class="card__desc">Rotate lights around an interactive 3D subject and see angle, quality, and colour reshape mood in real time — from a single key light to full multi-source compositions.</p>
-          <div class="card__footer">
-            <span class="card__meta">12 lessons · 3D interactive models</span>
-            <span class="card__cta">Open</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Subtractive Synthesis -->
-      <a class="card" href="https://subtractive-synthesis.vercel.app/" target="_blank" rel="noopener">
-        <div class="card__accent" style="background:var(--accent-synth)"></div>
-        <div class="card__preview preview--synth">
-          <svg width="260" height="110" viewBox="0 0 260 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Oscilloscope grid -->
-            <line x1="10" y1="55" x2="250" y2="55" stroke="#a0255a" stroke-width="0.4" opacity="0.25"/>
-            <line x1="130" y1="8" x2="130" y2="102" stroke="#a0255a" stroke-width="0.4" opacity="0.25"/>
-            <line x1="10" y1="8" x2="250" y2="8" stroke="#a0255a" stroke-width="0.3" opacity="0.12"/>
-            <line x1="10" y1="102" x2="250" y2="102" stroke="#a0255a" stroke-width="0.3" opacity="0.12"/>
-            <!-- Raw sawtooth (VCO out — harmonically rich) -->
-            <polyline points="10,55 30,18 30,55 60,18 60,55 90,18 90,55 120,18 120,55 150,18 150,55 180,18 180,55 210,18 210,55 240,18 240,55"
-              stroke="#c060a0" stroke-width="1" fill="none" opacity="0.4"/>
-            <!-- Filtered output (VCF out — smooth) -->
-            <path d="M10,55 C40,22 60,18 90,26 S140,40 170,44 S220,50 250,52"
-              stroke="#d070b8" stroke-width="2" fill="none" opacity="0.85" stroke-linecap="round"/>
-            <!-- Filter cutoff marker -->
-            <line x1="90" y1="10" x2="90" y2="100" stroke="#a0255a" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
-            <text x="93" y="20" font-family="Menlo, monospace" font-size="7" fill="#a0255a" opacity="0.8">VCF</text>
-            <!-- LFO modulation dots on filter line -->
-            <circle cx="90" cy="26" r="3" fill="#d070b8" opacity="0.9"/>
-          </svg>
-        </div>
-        <div class="card__body">
-          <span class="card__tag" style="color:var(--accent-synth)">Music · Sound Production</span>
-          <h2 class="card__title">Subtractive Synthesis</h2>
-          <p class="card__desc">Route oscillators through filters, envelopes, and LFOs on a virtual analogue synth — watch harmonics disappear in real time on the oscilloscope and FFT display as you sculpt classic sounds.</p>
-          <div class="card__footer">
-            <span class="card__meta">12 sections · Live synthesis engine</span>
+            <span class="card__meta">18 pages · ~44 min guided journey</span>
             <span class="card__cta">Open</span>
           </div>
         </div>
