@@ -22,6 +22,7 @@
       --accent-camera:  #1a1a2e;
       --accent-ai:      #e0436c;
       --accent-lighting: #c47a0a;
+      --accent-synth:   #a0255a;
 
       --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
       --font-mono: 'Menlo', 'Consolas', monospace;
@@ -241,6 +242,12 @@
       background: #080810;
     }
     .preview--lighting svg { opacity: 0.9; }
+
+    /* Subtractive Synthesis — oscilloscope */
+    .preview--synth {
+      background: #06060f;
+    }
+    .preview--synth svg { opacity: 0.9; }
 
     /* ── Footer ─────────────────────────────── */
     footer {
@@ -484,6 +491,40 @@
           <p class="card__desc">Rotate lights around an interactive 3D subject and see angle, quality, and colour reshape mood in real time — from a single key light to full multi-source compositions.</p>
           <div class="card__footer">
             <span class="card__meta">12 lessons · 3D interactive models</span>
+            <span class="card__cta">Open</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Subtractive Synthesis -->
+      <a class="card" href="https://subtractive-synthesis.vercel.app/" target="_blank" rel="noopener">
+        <div class="card__accent" style="background:var(--accent-synth)"></div>
+        <div class="card__preview preview--synth">
+          <svg width="260" height="110" viewBox="0 0 260 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Oscilloscope grid -->
+            <line x1="10" y1="55" x2="250" y2="55" stroke="#a0255a" stroke-width="0.4" opacity="0.25"/>
+            <line x1="130" y1="8" x2="130" y2="102" stroke="#a0255a" stroke-width="0.4" opacity="0.25"/>
+            <line x1="10" y1="8" x2="250" y2="8" stroke="#a0255a" stroke-width="0.3" opacity="0.12"/>
+            <line x1="10" y1="102" x2="250" y2="102" stroke="#a0255a" stroke-width="0.3" opacity="0.12"/>
+            <!-- Raw sawtooth (VCO out — harmonically rich) -->
+            <polyline points="10,55 30,18 30,55 60,18 60,55 90,18 90,55 120,18 120,55 150,18 150,55 180,18 180,55 210,18 210,55 240,18 240,55"
+              stroke="#c060a0" stroke-width="1" fill="none" opacity="0.4"/>
+            <!-- Filtered output (VCF out — smooth) -->
+            <path d="M10,55 C40,22 60,18 90,26 S140,40 170,44 S220,50 250,52"
+              stroke="#d070b8" stroke-width="2" fill="none" opacity="0.85" stroke-linecap="round"/>
+            <!-- Filter cutoff marker -->
+            <line x1="90" y1="10" x2="90" y2="100" stroke="#a0255a" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
+            <text x="93" y="20" font-family="Menlo, monospace" font-size="7" fill="#a0255a" opacity="0.8">VCF</text>
+            <!-- LFO modulation dots on filter line -->
+            <circle cx="90" cy="26" r="3" fill="#d070b8" opacity="0.9"/>
+          </svg>
+        </div>
+        <div class="card__body">
+          <span class="card__tag" style="color:var(--accent-synth)">Music · Sound Production</span>
+          <h2 class="card__title">Subtractive Synthesis</h2>
+          <p class="card__desc">Route oscillators through filters, envelopes, and LFOs on a virtual analogue synth — watch harmonics disappear in real time on the oscilloscope and FFT display as you sculpt classic sounds.</p>
+          <div class="card__footer">
+            <span class="card__meta">12 sections · Live synthesis engine</span>
             <span class="card__cta">Open</span>
           </div>
         </div>
